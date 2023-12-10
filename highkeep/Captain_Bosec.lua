@@ -76,12 +76,11 @@ function event_trade(e)
 				e.other:Faction(e.self,230,1,0); -- Faction: Corrupt Qeynos Guards
 				e.other:Faction(e.self,330,1,0); -- Faction: The Freeport Militia
 				-- This doesn't give xp for level 15 or below.
-				--But on Quarm, it does.
-				--if(e.other:GetLevel() > 15) then
-					e.other:QuestReward(e.self,math.random(0,5),math.random(0,5),math.random(0,5),0,0,2500); -- Quarm custom exp data
-				--else
-					-- e.other:QuestReward(e.self,math.random(0,5),math.random(0,5),math.random(0,5),0);
-				--end
+				if(e.other:GetLevel() > 15) then
+					e.other:QuestReward(e.self,math.random(0,5),math.random(0,5),math.random(0,5),0,0,25); -- verified xp live data
+				else
+					e.other:QuestReward(e.self,math.random(0,5),math.random(0,5),math.random(0,5),0);
+				end
 				ear = ear - 1;
 			until ear == 0
 		else

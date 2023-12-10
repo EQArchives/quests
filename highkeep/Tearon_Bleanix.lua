@@ -2,6 +2,8 @@ function event_say(e)
 	local fac = e.other:GetFaction(e.self);
 	local expansion_flag = eq.get_current_expansion();
 	if(e.message:findi("hail")) then
+--		e.self:Say("Beware!!..  Beware, the Teir'Dal walk the halls of Highkeep!!");
+--	elseif(e.message:findi("princess lenya thex")) then
 		e.self:Say("Hello sir. Are you a citizen of Highpass?");
 	elseif(e.message:findi("I am not a citizen")) then
 		e.self:Say("Nor am I. I find this city's love of greed appalling. Do not you?");

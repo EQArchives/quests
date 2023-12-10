@@ -34,7 +34,7 @@ function event_trade(e)
 		e.other:Faction(e.self,262,2,0);  -- Guards of Qeynos
 		e.other:Faction(e.self,221,-1,0); -- Bloodsabers
 		e.other:Faction(e.self,219,1,0);    -- Antonius Bayle
-		e.other:QuestReward(e.self,0,0,0,0,0,7250); -- Quarm custom EXP data. Normally: 4250
+		e.other:QuestReward(e.self,0,0,0,0,0,4250);
 	elseif(e.other:GetFactionValue(e.self) >= -100 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13298})) then
 		e.self:Say("Oh dear. The disease has spread to the realm of the Treefolk. It must have been difficult to kill such a large and rabid beast. Here. Take one of my personal scrolls as thanks for such a brave act of devotion. I pray you can use it. If not, then perhaps one of your fellow adventurers can.");
 		e.self:CastSpell(96,e.other:GetID()); -- Spell: Counteract Disease
@@ -53,7 +53,7 @@ function event_trade(e)
 		e.other:Faction(e.self,262,5,0);  -- Guards of Qeynos
 		e.other:Faction(e.self,221,-2,0); -- Bloodsabers
 		e.other:Faction(e.self,219,1,0);    -- Antonius Bayle
-		e.other:QuestReward(e.self,0,0,math.random(20),1,13951,9350); -- Quarm custom EXP data. Normally: 6350, Item: Fleshy Orb
+		e.other:QuestReward(e.self,0,0,math.random(20),1,13951,6350); -- Item: Fleshy Orb
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
