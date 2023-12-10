@@ -58,7 +58,7 @@ function event_trade(e)
 		e.other:Faction(e.self,343,3,0); -- Faction: QRG Protected Animals
 		e.other:Faction(e.self,324,-5,0); -- Faction: Unkempt Druids
 		e.other:Faction(e.self,262,3,0); -- Faction: Guards of Qeynos
-		e.other:QuestReward(e.self,0,0,0,0,eq.ChooseRandom(5013,5014,5015,5016,5017,5018,5019,5020,5021,5022,5023,5024),10);
+		e.other:QuestReward(e.self,0,math.random(10),math.random(15),0,eq.ChooseRandom(6018,15240,9006,2147,15239,15213,15237,2006,15252,15248,9002,2171),20000);
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
