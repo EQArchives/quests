@@ -12,3 +12,13 @@ function event_say(e)
 		e.self:Say("Well, we will need lumber - a good bit of it. I saw some likely wrecks when we sailed up the Cobalt Scar, you might want to look there. We also need rope, a lot of it, to lash the logs together, at least one hundred feet. Finally, we need something we can use as a sail - I do not like the idea of trying to paddle all the way back. I am not sure what you can find for that, but it needs to be strong, light, and not pass much air. Gather all that up, and come see me. I think I might have a bit of plunder and booty I can part with, in payment.");
 	end
 end
+
+function event_trade(e)
+	local item_lib = require("items");
+
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 27262, item2 = 27263, item3 = 27264}))
+	then
+		e.other:QuestReward(e.self, {itemid = 27310, exp = 60000}); -- Item: Breezeboot's Frigid Gnasher
+	end
+	item_lib.return_items(e.self, e.other, e.trade)
+end
