@@ -1,5 +1,5 @@
 function event_say(e)
-	if(eq.get_current_expansion() >= 4.0) then
+	if(eq.is_the_ruins_of_kunark_enabled()) then
 		if(e.message:findi("hail")) then
 			e.self:Say("Welcome. Please stock up on provisions, especially if you are headed toward the lair of the vile gnolls. If so, I wish you much luck and many gnoll pelts!! I also have knowledge of a [powerful dog]. I pray you do not encounter him.");
 		elseif(e.message:findi("powerful dog")) then
@@ -13,13 +13,7 @@ function event_say(e)
 		end
 	else
 		if(e.message:findi("hail")) then
-			e.self:Say("Welcome. Please stock up on provisions, especially if you are headed toward the lair of the vile gnolls. If so, I wish you much luck and many gnoll pelts!! I also have knowledge of a [powerful dog]. I pray you do not encounter him.");
-		elseif(e.message:findi("powerful dog")) then
-			e.self:Say("I have encountered a gnoll who spoke the common tongue. He dared to call himself Lord Elgnub. He swore that some day we would cross paths and he would snatch my infant son Joseph from our home. He would stand no chance against me and the mighty [Gnoll Slayer].");
-		elseif(e.message:findi("gnoll slayer")) then
-			e.self:Say("Gnoll Slayer is the mighty longsword which was passed down unto me through generations of Sayers. My days of battle are over, but I can still wield her with ferocity. The only thing more precious would be my son, Joseph Sayer. I would trade Gnoll Slayer only for him to be safe and sound at home.");
-		elseif(e.message:findi("joseph") or e.message:findi("son")) then
-			e.self:Say("You speak of my son, Joseph Sayer. He is but an infant and is safe here with Mira and me... At least, I believe he is.");
+			e.self:Say("Welcome. Please stock up on provisions, especially if you are headed toward the lair of the vile gnolls. If so, I wish you much luck and many gnoll pelts!!");
 		end
 	end
 end
@@ -28,18 +22,14 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12204})) then
-		if(eq.get_current_expansion() >= 4.0) then
-			e.self:Say("Baby Joseph!! Look, Momma!! Baby Joseph has been rescued by this good adventurer!! That evil Lord Elgnub made good on his word and snatched my son from under our noses. You saved the day!! For this you shall wield 'Gnoll Slayer'!! Be aware of its [true potential].");
-		else
-			e.self:Say("Baby Joseph!! Look, Momma!! Baby Joseph has been rescued by this good adventurer!! That evil Lord Elgnub made good on his word and snatched my son from under our noses. You saved the day!! For this you shall wield 'Gnoll Slayer'!!");
-		end
+		e.self:Say("Baby Joseph!! Look, Momma!! Baby Joseph has been rescued by this good adventurer!! That evil Lord Elgnub made good on his word and snatched my son from under our noses. You saved the day!! For this you shall wield 'Gnoll Slayer'!! Be aware of its [true potential].");
 		e.other:Faction(e.self,291,20); -- Faction: Merchants of Qeynos
 		e.other:Faction(e.self,223,-4); -- Faction: Circle of Unseen Hands
 		e.other:Faction(e.self,219,3); -- Faction: Antonius Bayle
 		e.other:Faction(e.self,229,2); -- Faction: Coalition of Tradefolk
 		e.other:Faction(e.self,262,4); -- Faction: Guards of Qeynos
 		e.other:QuestReward(e.self,0,0,0,0,5416,500); -- Item: Gnoll Slayer
-	elseif(eq.get_current_expansion() >= 6.0 and item_lib.check_turn_in(e.self, e.trade, {item1 = 8357,item2 = 8356,item3 = 5416})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 8357,item2 = 8356,item3 = 5416})) then
 		e.self:Say("The eye and the journal! What a great day! The Gnoll Slayer shall be returned to full strength because of you. Your service to Qeynos will not soon be forgotten.");
 		e.other:Faction(e.self,291,200,0); -- Faction: Merchants of Qeynos
 		e.other:Faction(e.self,223,-40,0); -- Faction: Circle of Unseen Hands
