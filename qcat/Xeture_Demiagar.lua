@@ -1,5 +1,5 @@
 function event_say(e)
-	if(eq.get_current_expansion() >= 4.0) then
+	if(eq.is_the_shadows_of_luclin_enabled()) then
 		if(e.message:findi("hail")) then
 			if(e.other:GetFactionValue(e.self) >= -500) then	
 				e.self:Say("I have much to do here for the defense of our Temple and the appeasing of our patron Bertoxxulous, the Plague Lord. If the Plague Lord has gifted you with the desire to [serve his will] as a priest of the Bloodsabers I will assist in your training. If not, then leave me now and do not interrupt me again.");
@@ -26,12 +26,19 @@ function event_say(e)
 				e.self:Say("The lair of the Bloodsabers is no place for you...  begone, or be dead!");	
 			end	
 		end
+	else
+		if(e.message:findi("hail")) then
+			if(e.other:GetFactionValue(e.self) >= -500) then	
+				e.self:Say("I have much to do here for the defense of our Temple and the appeasing of our patron Bertoxxulous, the Plague Lord. If the Plague Lord has gifted you with the desire to serve his will as a priest of the Bloodsabers I will assist in your training. If not, then leave me now and do not interrupt me again."); -- made up text
+			else
+				e.self:Say("The lair of the Bloodsabers is no place for you...  begone, or be dead!");	
+			end		
+		end
 	end
 end
 
 function event_trade(e)
 	local item_lib = require("items");
-	local expansion_flag = eq.get_current_expansion();
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18716})) then --Tattered Note
 		e.self:Say("Hmmm. Another rat has found its way to my doorstep, huh? Well, we may have use for you. Go find Rihtur, maybe he has an errand for you.");
 		e.other:Faction(e.self,221,100); --Bloodsabers
@@ -40,7 +47,7 @@ function event_trade(e)
 		e.other:Faction(e.self,341,-25); --Priest of Life
 		e.other:Faction(e.self,230,5); --Corrupt Qeynos Guards
 		e.other:QuestReward(e.self,0,0,0,0,13598,100); --Ruined Training Tunic*
-	elseif(expansion_flag >= 4.0 and item_lib.check_turn_in(e.self, e.trade, {item1 = 20197})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20197})) then
 		e.self:Say("You have done well, " .. e.other:GetCleanName() .. ". Take this Rusty Bloodsaber Mace to a forge and clean it up with a Sharpening Stone. It may take you several attempts to get all the rust off if you are not familiar with the process. Once that is done take the Refined Bloodsaber Mace to Torin Krentar with a Giant King Snake Skin and he will put the finishing touches on the weapon.");
 		e.other:Faction(e.self,221,10); -- Faction: Bloodsabers
 		e.other:Faction(e.self,262,-1); -- Faction: Guards of Qeynos

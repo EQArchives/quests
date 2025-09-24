@@ -12,6 +12,7 @@ function event_spawn(e)
 	SpawnH = e.self:GetHeading();
 	local range = 230;
 	eq.set_proximity(SpawnX - range, SpawnX + range, SpawnY - range, SpawnY + range);
+	eq.discord_send("Spawn Notices", "".. e.self:GetCleanName() .." has spawned");
 end
 
 --[[function event_enter(e)
@@ -24,6 +25,7 @@ end]]
 function event_combat(e)
 	if(e.joined) then
 		eq.set_timer("1",1000); --a 1 second leash timer.
+		eq.discord_send("Spawn Notices", "".. e.self:GetCleanName() .." has engaged");
 	else
 		eq.stop_timer("1");
 		e.self:GMMove(SpawnX,SpawnY,SpawnZ,SpawnH);
@@ -56,6 +58,10 @@ function event_timer(e)
 			);
 			]]end
 	end
+end
+
+function event_death_complete(e)
+	eq.discord_send("Spawn Notices", "".. e.self:GetCleanName() .." has been defeated");
 end
 
 function event_signal(e)

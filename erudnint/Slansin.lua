@@ -1,4 +1,3 @@
-
 -- Inert Potion
 
 function event_say(e)

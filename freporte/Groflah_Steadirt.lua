@@ -16,9 +16,10 @@ function event_trade(e)
 	local Tumpy_Tonic = 0;
 	local item_lib =require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18818})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18818})) then 
 		e.self:Say("This used to be hanging in Zimel's Blades. It is the price list. It is badly faded though. There was a fire in Zimel's Blades and I was on the scene just afterward. I did not see this hanging. I wonder who took it . . . Hmmmm.. oh, yes.. the markings on the list! It is a code! Here. I will fill it in. Read it. You probably do not even know who Ariska is.");
 		e.other:QuestReward(e.self,0,0,0,0,18819); -- Item: A tattered flier
+		eq.unique_spawn(10003,0,0,-920,-210,-52.1,0); -- spawns Laken Boorheez
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12114,item2 = 12114,item3 = 12114,item4 = 12114}, 0)) then
 		Tumpy_Tonic = 4;
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12114,item2 = 12114,item3 = 12114}, 0)) then
@@ -32,11 +33,11 @@ function event_trade(e)
 	if(Tumpy_Tonic > 0) then
 		repeat
 			e.self:Say("<glug,glug,glug> Ahh! I missed those. I was just telling myself the other... Uh oh! I have to use the little dwarf's facilities. Excuse me");
-			e.other:Faction(e.self,229,1,0); -- Faction: Coalition of Tradefolk
-			e.other:Faction(e.self,336,1,0); -- Faction: Coalition of Tradefolk Underground
-			e.other:Faction(e.self,281,1,0); -- Faction: Knights of Truth
-			e.other:Faction(e.self,291,1,0); -- Faction: Merchants of Qeynos
-			e.other:QuestReward(e.self,0,0,0,0,0,15);
+			e.other:Faction(e.self,229,10,0); -- Faction: Coalition of Tradefolk
+			e.other:Faction(e.self,336,10,0); -- Faction: Coalition of Tradefolk Underground
+			e.other:Faction(e.self,281,10,0); -- Faction: Knights of Truth
+			e.other:Faction(e.self,291,7,0); -- Faction: Merchants of Qeynos
+			e.other:QuestReward(e.self,math.random(10),math.random(10),math.random(2),0,0,15);
 			Tumpy_Tonic = Tumpy_Tonic - 1;
 		until Tumpy_Tonic == 0
 	end

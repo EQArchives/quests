@@ -1,5 +1,5 @@
 function event_say(e)
-	if(eq.get_current_expansion() >= 4.0) then
+	if(eq.is_the_shadows_of_luclin_enabled()) then
 		if(e.message:findi("hail")) then
 			e.self:Emote("Hello! I am Hibbs Rootenpaw, Master Druid of the Storm Reapers. If you have not yet ventured beyond Rivervale beware of the [dangers] that lurk through out the lands beyond our shire. There are many evil beings that would not hesitate to end the life of a young druid of the Storm Reapers.");
 		elseif(e.message:findi("dangers")) then
@@ -10,12 +10,16 @@ function event_say(e)
 		elseif(e.message:findi("investigation")) then
 			e.self:Say("We Storm Reapers are searching for the culprit that is seeding the cursed fields with the diseased and undead creatures. The person responsible has committed great offenses to the ways of Karana and the people of Rivervale and must be stopped. Should you identify the individual responsible slay them and bring their head to me and you shall be rewarded for your deed. It is a shame that our otherwise peaceful lives must occasionally be interrupted by the necessity for bloodshed.");
 		end
+	else
+		if(e.message:findi("hail")) then
+			e.self:Emote("Hello! I am Hibbs Rootenpaw, Master Druid of the Storm Reapers.");	-- Text made up
+		end
 	end
 end
 
 function event_trade(e)
 	local item_lib = require("items");
-	local expansion_flag = eq.get_current_expansion();
+
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18734})) then -- Tattered Note
 		e.self:Say("Hello, friend! I am Hibbs Rootenpaw, leader of the Storm Reapers. Our guild works together with Will Tagglefoot and his family on their farm, to produce the food supply for all of Rivervale. With Karana's help, we have a bountiful harvest every season. We're glad you could help us out. Here's your guild tunic, it'll help keep you dry during the wet months. Go find Reebo out in the fields. He'll help get you started. Welcome aboard! May you serve Karana well.");
 		e.other:Faction(e.self,355,100,0); -- +Storm Reapers
@@ -23,7 +27,7 @@ function event_trade(e)
 		e.other:Faction(e.self,292,15,0); -- +Merchants of Rivervale
 		e.other:Faction(e.self,324,-15,0); -- -Unkempt Druids
 		e.other:QuestReward(e.self,0,0,0,0,13541,20); -- Jumjum Sack Tunic*
-	elseif(expansion_flag >= 4.0 and item_lib.check_turn_in(e.self, e.trade, {item1 = 19689})) then -- Rusbek's Head
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 19689})) then -- Rusbek's Head
 		e.self:Say("Excellent work young Storm Reaper. It is sad that one of our own would resort to such vile acts; his mind must have been twisted by evil desires. Such behavior is practically unheard of among the kind people of Rivervale. Take this dull scimitar and sharpen it in the forge here at the Tagglefoots Farm with a sharpening stone. It may take several attempts if you are unfamiliar with the process. Once that is done give the sharpened scimitar and a large fruit bat wing to Bodbin Gimple and he will put the finishing touches on what will be a fitting scimitar for a Druid of the Storm Reapers.");
 		e.other:Faction(e.self,355,10,0); -- +Storm Reapers
 		e.other:Faction(e.self,286,1,0); -- +Mayor Gubbin
