@@ -28,6 +28,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
+	
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12815})) then
 		e.self:Emote("bows before you and takes a wrinkled, mummified hand from a pouch at his side. 'Take the hand. Let it rest within Cabilis and be reunited with the left.'");
 		e.other:Faction(e.self,444,20); -- Faction: Swift Tails

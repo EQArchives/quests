@@ -5,8 +5,8 @@ function event_signal(e)
  end
 
  function event_waypoint_arrive(e)
- 	local zone_time = eq.get_zone_time(); -- Time here is off by 1, so 6AM = 5.
-	local hour = zone_time["zone_hour"] + 1;
+ 	local zone_time = eq.get_zone_time();
+	local hour = zone_time["zone_hour"];
 	local minute = zone_time["zone_minute"];
 	if(e.wp == 2) then
 		eq.stop();
@@ -14,7 +14,7 @@ function event_signal(e)
 		eq.get_entity_list():ForeachClient(
 			function(ent)
 				ent:Signal(2);
-					end,
+			end,
 			function(ent)
 				-- Server thinks we're on Maidens_Voyage and are about to zone.
 				if(ent:GetBoatID() == 838 and ent:GetX() < -7100) then
