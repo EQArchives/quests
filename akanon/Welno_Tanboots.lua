@@ -1,8 +1,7 @@
--- Converted to .lua by Speedz
 
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say("Greetings there " .. e.other:GetCleanName() .. "! I am Welno Tanlonikan Assassin of Akanon. I pride myself on being one of the few to train our younger prospects in the ways of the rogue.");
+		e.self:Say("Greetings there " .. e.other:GetCleanName() .. "! I am Welno Tanboots Assassin of Akanon. I pride myself on being one of the few to train our younger prospects in the ways of the rogue."); -- text made up
 	end
 end
 

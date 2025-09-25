@@ -1,4 +1,3 @@
-
 function event_spawn(e)
     -- enable Shuttles on initial zone start
     eq.spawn_condition("butcher",3,1);

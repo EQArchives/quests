@@ -28,7 +28,7 @@ function event_say(e)
 		if(e.other:GetFactionValue(e.self) >= 0) then
 			e.self:Say("I.. um.. can make.. um.. a good cloak for you. You have to get me a bear skin of high quality and my brother says I should not make them unless you also give me 21 gold pieces. I used to give them away but [Baobob] got mad at me so I don't do that anymore.");
 		else
-			e.self:Say("Hmm.. I really would not feel comfortable helping you in that way. You need to prove yourself to me by aiding my friends and family in the Plains of Karana before I will help you.");
+			e.self:Say("I...  um...  don't know you well enough to help you with th... th... that...  If you um... do stuff... for me and my brother or our family and friends in the Plains of Karana I might... um... reconsider...");
 		end
 	elseif(e.message:findi("belt")) then
 		e.self:Say("Oh, yes, I like making belts! They are easy! All I need is a bear skin and 5 gold pieces. The bear skin doesn't have to be that great but don't bring me a ruined one. The gold was my brother's idea.. sorry.");
@@ -51,21 +51,21 @@ function event_trade(e)
 		e.other:Faction(e.self,345,2,0); -- Karana Residents
 		e.other:Faction(e.self,262,1,0); -- Guards of Qeynos
 		e.other:Faction(e.self,341,1,0); -- Priests of Life
-		e.other:Faction(e.self,280,1,0); -- Priests of Life
+		e.other:Faction(e.self,280,1,0); -- Knights of Thunder
 		e.other:QuestReward(e.self,{itemid = 2902,exp = 50}); -- Item: Bear-hide Cape
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13751, gold = 15},1,text)) then
 		e.self:Say("Ohh good.. good! I.. um.. can make.. Oh great. Here you go. I hope you like it. I always um.. try my best. Tell your um.. friends where you got your bear things!");
 		e.other:Faction(e.self,345,2,0); -- Karana Residents
 		e.other:Faction(e.self,262,1,0); -- Guards of Qeynos
 		e.other:Faction(e.self,341,1,0); -- Priests of Life
-		e.other:Faction(e.self,280,1,0); -- Priests of Life
+		e.other:Faction(e.self,280,1,0); -- Knights of Thunder
 		e.other:QuestReward(e.self,{itemid = 2903,exp = 50}); -- Item: Bear-hide Boots
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13750, gold = 5},1,text)) then
 		e.self:Say("Great. Oh, here, now I can make the.. um.. ok.. here. Yes.. good. I love making bear skin belts. Here you go. I hope you like it.");
 		e.other:Faction(e.self,345,2,0); -- Karana Residents
 		e.other:Faction(e.self,262,1,0); -- Guards of Qeynos
 		e.other:Faction(e.self,341,1,0); -- Priests of Life
-		e.other:Faction(e.self,280,1,0); -- Priests of Life
+		e.other:Faction(e.self,280,1,0); -- Knights of Thunder
 		e.other:QuestReward(e.self,{itemid = 2904,exp = 50}); -- Item: Bear-hide Belt
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

@@ -57,6 +57,7 @@ function event_trade(e)
 		if ( math.random() < 0.5 ) then
 			e.other:SummonItem(eq.ChooseRandom(5047,5048,7032,5046));
 		end
+
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18840})) then -- Sealed Letter (Letter To King Naythox Thex)
 		e.self:Say("Yes. A recent report has proven this to be true. An evil alliance has been made. We shall soon need many more experienced adventurers such as yourself. For now, take this reward and strengthen your skills.");
 		e.other:Faction(e.self,246,30);  -- Faydark's Champions
