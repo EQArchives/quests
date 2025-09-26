@@ -4,7 +4,7 @@ function event_spawn(e)
 end
 
 function event_timer(e)
-	count = count + 1;
+	count = (count or 0) + 1;
 	if(count == 1) then
 		eq.signal(155310,1,1);
 		eq.signal(155309,1,1);
