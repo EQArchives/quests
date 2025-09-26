@@ -1,11 +1,10 @@
-local count;
 function event_spawn(e)
 	count = 0;
 	eq.set_timer("train",7000);
 end
 
 function event_timer(e)
-	count = count + 1;
+	count = (count or 0) + 1;
 	if(count==3) then
 		e.self:Say("Listen up, recruits! Your lives will depend on your ability to deal with an enemy in unarmed combat.");
 	end
