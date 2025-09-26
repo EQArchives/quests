@@ -1,4 +1,4 @@
-local count;
+local count = 0;
 function event_spawn(e)
 	count = 0;
 	eq.set_timer("training",10000);
