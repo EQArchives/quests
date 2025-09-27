@@ -1,24 +1,20 @@
 -- Attempt to limit players level 53 and over from engaging nagafen and vox.
 -- Banished to Lavastorm.
-local SpawnX = 0;
-local SpawnY = 0;
-local SpawnZ = 0;
-local SpawnH = 0;
+local SpawnX = -870;
+local SpawnY = -1394;
+local SpawnZ = 105;
+local SpawnH = 23;
 
 function event_spawn(e)
-	SpawnX = e.self:GetX();
-	SpawnY = e.self:GetY();
-	SpawnZ = e.self:GetZ();
-	SpawnH = e.self:GetHeading();
 	local range = 230;
 	eq.set_proximity(SpawnX - range, SpawnX + range, SpawnY - range, SpawnY + range);
 	eq.discord_send("Spawn Notices", "".. e.self:GetCleanName() .." has spawned");
 end
 
 --[[function event_enter(e)
-	if(e.other:GetLevel() > 52 and e.other:Admin() < 80) then
+	if(eq.is_the_scars_of_velious_enabled() and e.other:GetLevel() > 52 and e.other:Admin() < 80) then
 		e.other:Message(4,"I will not fight you, but I shall banish you!");
-		e.other:MovePC(27,534,913,55,0); -- Zone: bothunder 
+		e.other:MovePC(27,534,913,55,0); -- Zone: lavastorm 
 	end
 end]]
 
@@ -36,7 +32,7 @@ function event_timer(e)
 	if(e.timer == "1") then
 		if(e.self:GetX() < -1000 or e.self:GetX() > -650 or e.self:GetY() < -1500 or e.self:GetY() > -1170) then
 			e.self:GMMove(SpawnX,SpawnY,SpawnZ,SpawnH);
-		elseif(e.self:CountHateList() > 0) then
+		elseif(eq.is_the_scars_of_velious_enabled() and e.self:CountHateList() > 0) then
 --[[			e.self:ForeachHateList(
 			function(ent, hate, damage, frenzy)
 					if(ent:IsClient()) then
