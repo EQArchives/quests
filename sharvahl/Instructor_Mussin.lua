@@ -1,10 +1,11 @@
+local count;
 function event_spawn(e)
 	count = 0;
 	eq.set_timer("training",10000);
 end
 
 function event_timer(e)
-	count = (count or 0) + 1;
+	count = count + 1;
 	if(count == 1) then
 		eq.signal(155310,1,1);
 		eq.signal(155309,1,1);
