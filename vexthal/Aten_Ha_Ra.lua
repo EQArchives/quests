@@ -90,7 +90,7 @@ function event_death_complete(e)
             message = player_name .. " of " .. guild_name .. " has delivered the killing blow to Aten Ha Ra!"
         end
     else
-        message = player_name .. " has slain Emperor Aten Ha Ra!"
+        message = player_name .. " has slain Aten Ha Ra!"
     end
 
     eq.world_wide_message(335, 15, message)
