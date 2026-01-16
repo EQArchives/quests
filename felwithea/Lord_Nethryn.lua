@@ -1,6 +1,6 @@
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Emote(" bows at the waist, his manner sincere and regal with the soft smile upon his lips. ''Greetings and good day " .. e.other:GetCleanName() .. ", I trust that [you are well]?");
+		e.self:Emote("bows at the waist, his manner sincere and regal with the soft smile upon his lips. 'Greetings and good day " .. e.other:GetCleanName() .. ", I trust that [you are well]?");
 	elseif(e.message:findi("am well")) then
 		e.self:Say("Excellent! It is quite a pleasant day, indeed. However, I am curious, and I do not mean [to pry], but by what grace of Tunare have I the pleasure of your company? Perhaps you merely [travel], or is it [me] you truly seek?");
 	elseif(e.message:findi("to pry")) then
