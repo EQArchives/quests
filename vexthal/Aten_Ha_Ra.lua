@@ -48,4 +48,50 @@ end
 
 function event_spawn(e)
 	eq.set_timer("sploitcheck", 5000);
+	eq.discord_send("Spawn Notices", "".. e.self:GetCleanName() .." has spawned");
+end
+
+function event_combat(e)
+	eq.discord_send("Spawn Notices", "".. e.self:GetCleanName() .." has engaged");
+end
+
+function event_death_complete(e)
+	eq.discord_send("Spawn Notices", "".. e.self:GetCleanName() .." has been defeated");
+    local killer = e.self:GetHateTop()
+
+    if not killer then
+        eq.world_wide_message(335, 15, "Aten Ha Ra has been slain!")
+        return
+    end
+
+    local client = nil
+    local pet_kill = false
+
+    if killer:IsClient() then
+        client = killer:CastToClient()
+    elseif killer:IsPet() and killer:GetOwner() and killer:GetOwner():IsClient() then
+        client = killer:GetOwner():CastToClient()
+        pet_kill = true
+    end
+
+    if not client then
+        eq.world_wide_message(335, 15, "Aten Ha Ra has been slain!")
+        return
+    end
+
+    local player_name = client:GetCleanName()
+    local guild_name = client:GuildName()
+    local message
+
+    if guild_name and guild_name ~= "" then
+        if pet_kill then
+            message = player_name .. " of " .. guild_name .. " has struck down Aten Ha Ra!"
+        else
+            message = player_name .. " of " .. guild_name .. " has delivered the killing blow to Aten Ha Ra!"
+        end
+    else
+        message = player_name .. " has slain Emperor Aten Ha Ra!"
+    end
+
+    eq.world_wide_message(335, 15, message)
 end
